@@ -12,7 +12,7 @@ const tailwindcssPlugin = tailwindcss();
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://si1og.github.io",
   integrations: [mdx(), sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
