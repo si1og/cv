@@ -1,0 +1,74 @@
+---
+import Base from "~/layouts/Base.astro";
+import Education from "~/components/cv/Education.astro";
+import Experience from "~/components/cv/Experience.astro";
+import { SkillBlock } from "~/components/cv/SkillBlock.tsx";
+import { SKILL_BLOCKS, CONTACTS } from "~/consts";
+---
+
+<Base title="Резюме | Ilya Semenov">
+    <div class="text-center mb-10">
+        <h1
+            class="text-3xl sm:text-4xl font-bold text-[#d5d5d5] mb-2 font-serif"
+        >
+            Илья Семенов
+        </h1>
+        <p class="text-[#a1a1a1] text-lg">Frontend Dev • Студент СПбПУ</p>
+        <div class="flex justify-center flex-wrap gap-3 mt-5">
+            {
+                [
+                    {
+                        label: CONTACTS.email,
+                        href: `mailto:${CONTACTS.email}`,
+                        external: false,
+                    },
+                    {
+                        label: "GitHub ↗",
+                        href: CONTACTS.github,
+                        external: true,
+                    },
+                    {
+                        label: "Telegram ↗",
+                        href: CONTACTS.telegram,
+                        external: true,
+                    },
+                    {
+                        label: "Unsplash ↗",
+                        href: CONTACTS.unsplash,
+                        external: true,
+                    },
+                ].map(({ label, href, external }) => (
+                    <a
+                        href={href}
+                        target={external ? "_blank" : undefined}
+                        rel={external ? "noopener noreferrer" : undefined}
+                        class="text-sm text-[#d5d5d5] bg-[#ffffff11] hover:bg-[#ffffff1a] border border-[#2c2c2c] rounded-xl px-4 py-2 transition-colors duration-200"
+                    >
+                        {label}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+
+    <Education />
+    <Experience />
+
+    <section aria-labelledby="skills-heading">
+        <h2 id="skills-heading" class="text-xl font-bold text-[#d5d5d5] mb-4">
+            Навыки
+        </h2>
+        <div class="grid grid-cols-1 gap-3">
+            {
+                SKILL_BLOCKS.map((block) => (
+                    <SkillBlock
+                        client:load
+                        title={block.title}
+                        skills={block.skills}
+                        color={block.color}
+                    />
+                ))
+            }
+        </div>
+    </section>
+</Base>

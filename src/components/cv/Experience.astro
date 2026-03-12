@@ -1,0 +1,57 @@
+---
+import { EXPERIENCE } from "~/consts";
+---
+
+<section class="mb-8" aria-labelledby="experience-heading">
+    <div class="bg-[#1b1b1b] border border-[#2c2c2c] rounded-2xl p-5">
+        <div
+            class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3"
+        >
+            <div>
+                <h2
+                    id="experience-heading"
+                    class="text-lg font-bold text-[#d5d5d5]"
+                >
+                    {
+                        EXPERIENCE.link ? (
+                            <a
+                                href={EXPERIENCE.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="hover:text-[#ffffff] transition-colors"
+                            >
+                                {EXPERIENCE.company} ↗
+                            </a>
+                        ) : (
+                            EXPERIENCE.company
+                        )
+                    }
+                </h2>
+                <p class="text-[#a1a1a1] font-medium text-sm mt-0.5 italic">
+                    {EXPERIENCE.role}
+                </p>
+            </div>
+            <time class="text-sm text-[#a1a1a1] whitespace-nowrap"
+                >{EXPERIENCE.period}</time
+            >
+        </div>
+
+        {
+            EXPERIENCE.description && (
+                <p class="text-[#a1a1a1] text-sm leading-relaxed mb-4">
+                    {EXPERIENCE.description}
+                </p>
+            )
+        }
+
+        <div class="flex flex-wrap gap-2" aria-label="Технологии">
+            {
+                EXPERIENCE.stack.map((tech) => (
+                    <span class="px-2.5 py-1 bg-[#ffffff11] border border-[#2c2c2c] text-[#d5d5d5] rounded-lg text-xs font-medium">
+                        {tech}
+                    </span>
+                ))
+            }
+        </div>
+    </div>
+</section>

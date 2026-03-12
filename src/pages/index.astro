@@ -1,0 +1,72 @@
+---
+import BaseHead from "~/components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION, CONTACTS } from "~/consts";
+---
+
+<!doctype html>
+<html lang="ru" class="dark">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body
+        class="min-h-screen bg-[#161616] flex items-center justify-center px-4"
+    >
+        <div
+            class="w-full max-w-md bg-[#1b1b1b] border border-[#2c2c2c] rounded-3xl p-8 shadow-sm"
+        >
+            <div class="mb-6">
+                <h1
+                    class="text-[#d5d5d5] text-2xl font-bold mb-2 font-serif italic"
+                >
+                    Привет! 👋
+                </h1>
+                <p class="text-[#cecece] text-base leading-relaxed font-light">
+                    Меня зовут Илья — frontend-разработчик и студент СПбПУ. Пишу
+                    на React, Next.js и Vue.
+                </p>
+                <p
+                    class="text-[#cecece] text-base leading-relaxed font-light italic pt-2"
+                >
+                    Более полутора лет снимаю вузовские мероприятия :)
+                </p>
+            </div>
+
+            <nav class="flex flex-wrap gap-3">
+                {
+                    [
+                        {
+                            label: "Резюме",
+                            href: CONTACTS.resume,
+                            external: false,
+                        },
+                        {
+                            label: "GitHub",
+                            href: CONTACTS.github,
+                            external: true,
+                        },
+                        {
+                            label: "Telegram",
+                            href: CONTACTS.telegram,
+                            external: true,
+                        },
+                        {
+                            label: "Unsplash",
+                            href: CONTACTS.unsplash,
+                            external: true,
+                        },
+                    ].map(({ label, href, external }) => (
+                        <a
+                            href={href}
+                            target={external ? "_blank" : undefined}
+                            rel={external ? "noopener noreferrer" : undefined}
+                            class="text-sm text-[#d5d5d5] bg-[#ffffff11] hover:bg-[#ffffff1a] border border-[#2c2c2c] rounded-xl px-4 py-2 transition-colors duration-200 active:scale-98"
+                        >
+                            {label}
+                            {external ? " ↗" : ""}
+                        </a>
+                    ))
+                }
+            </nav>
+        </div>
+    </body>
+</html>
